@@ -12,10 +12,9 @@
 # 'subordinate' stations that are not included in this data set. The subordinate
 # station predictions are generally made by applying a height offset 
 # correction and high/low tide time correction to the predictions from the local
-# reference station. If you wish to make predictions for one of these 
-# subordinate stations you'll still need to first generate predictions for the 
-# local reference station (contained in this data set) and apply your 
-# corrections afterwards.
+# reference station. To find the name for a reference station, search through
+# http://www.flaterco.com/xtide/locations.html and look for stations listed with
+# the "Ref" designator (not the "Sub" designator). 
 load('Harmonics_20120302.Rdata')
 
 # Specify a search string that will hopefully only return a single station
