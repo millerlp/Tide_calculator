@@ -21,7 +21,7 @@
  
  
  This program is designed to calculate the current tide height
- and control a motor that changes the water level in a tank.
+ for a site. The site is set by the included library (see line 54).
  
  Written under v1.0.1 of the Arduino IDE.
  
@@ -51,12 +51,12 @@ RTC_DS3231 RTC;
 
 
 // Tide calculation library setup. Change the library name to use a different site.
-#include "TideSanDiegoSanDiegoBaylib.h"
+#include "TideMontereyHarborlib.h"
 TideCalc myTideCalc;  // Create TideCalc object called myTideCalc
 
 
 int currMinute; // Keep track of current minute value in main loop
-float results;  // results holds the output from the tide calc.    Units = ft.
+float results;  // results holds the output from the tide calc. Units = ft.
 
 //**************************************************************************
 // Welcome to the setup loop
@@ -66,9 +66,9 @@ void setup(void)
   RTC.begin();
 
   // For debugging output to serial monitor
-  Serial.begin(115200);
+  Serial.begin(115200);  // Set baud rate to 115200 in serial monitor
   //************************************
-  DateTime now = RTC.now();
+  DateTime now = RTC.now(); // Get current time from clock
   currMinute = now.minute(); // Store current minute value
   printTime(now);  // Call printTime function to print date/time to serial
   Serial.println("Calculating tides for: ");
@@ -89,7 +89,7 @@ void loop(void)
     // If now.minute doesn't equal currMinute, a new minute has turned
     // over, so it's time to update the tide height. We only want to do
     // this once per minute. 
-    currMinute = now.minute();                   // update currMinute
+    currMinute = now.minute();   // update currMinute
     
     Serial.println();
     printTime(now); 
