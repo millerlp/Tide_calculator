@@ -142,7 +142,7 @@ cat('PROGMEM prog_float_t Speed[] = {')
 cat(harms1$speed, sep = ',')
 cat('};\n')
 
-## Create code for a 4 year x 37 constituent array
+## Create code for a X year x 37 constituent array
 cat('PROGMEM prog_float_t Equilarg[')
 cat(keep.years)
 cat('][37] = { \n')
