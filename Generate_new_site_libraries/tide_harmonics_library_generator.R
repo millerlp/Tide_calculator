@@ -35,11 +35,40 @@ GMToffset = 8 # Time zone correction for the site's local standard time zone
 # Find row index of the desired station in the harms list
 stInd = grep(stationID, harms$station)
 
-#Remove spaces from station name so it can be used as a library name
+# If there are multiple matches to the stationID given, have the user
+# choose the appropriate station.
+if (length(stInd) > 1) {
+	cat('There are ', length(stInd), ' matching stations: \n')
+	for (i in 1:length(stInd)) {
+		cat(i, ': ',harms$station[stInd[i]],'\n', sep = '')
+	}
+	cat('Please choose the desired station number: \n')
+	newstInd = scan(file = '', what = integer(), nmax = 1)
+	cat('Using this site: \n')
+	cat(harms$station[stInd[newstInd]],'\n')
+}
+
+#Remove spaces from station ID so it can be used as a library name
 libname = gsub('[ ]', '', stationID)
 libname = gsub('[,]', '', libname)
-libname = paste('Tide',libname,'lib',sep = '')
 
+
+# If the user had to choose a station from the list, extract part of the
+# chosen station's name to add to the libname
+if (exists("newstInd")) {
+	statname = harms$station[stInd[newstInd]] # get station name
+	comloc = regexpr(',', statname) # find location of first comma in name
+	statname = substr(statname,1,comloc-1) # extract 1st part of name
+	statname = gsub('[ ]','', statname) # remove spaces
+	libname = paste(libname,statname,sep = '')
+}
+libname = paste('Tidelib',libname,sep = '') # Finish building libname
+
+
+if (exists("newstInd")) {
+	stInd = stInd[newstInd] # re-assign value to stInd
+	rm(newstInd)
+}
 # We only want to hold on to starting constants for this year (and future years)
 # so we'll get the year index for the current year so that we can dump data from
 # earlier years
