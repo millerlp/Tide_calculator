@@ -1,9 +1,9 @@
 /*  Tide_calculator.ino 
- Copyright (C) 2012 Luke Miller
+ Copyright (c) 2012 Luke Miller
 This code calculates the current tide height for the 
 pre-programmed site. It requires a real time clock
 (DS1307 or DS3231 chips) to generate a time for the calculation.
-The site is set by name of the included library (see line 44 below)
+The site is set by the name of the included library (see line 44 below)
 
 Written under version 1.0.1 of the Arduino IDE.
 
@@ -42,7 +42,7 @@ RTC_DS1307 RTC;  // Uncomment when using this chip
 // Tide calculation library setup.
 // Change the library name here to predict for a different site.
 #include "TidelibPortSanLuis.h"
-// Other sites available at https://github.com/millerlp/Tide_calculator
+// Other sites available at http://github.com/millerlp/Tide_calculator
 TideCalc myTideCalc; // Create TideCalc object called myTideCalc
 
 int currMinute; // Keep track of current minute value in main loop
