@@ -22,10 +22,11 @@ load('Harmonics_20120302.Rdata')
 # Specify a search string that will hopefully only return a single station
 #stationID = 'San Diego, San Diego Bay'
 #stationID = 'Monterey Harbor'
-#stationID = 'San Francisco'
+stationID = 'Pier 41, San Francisco'
 #stationID = 'Port San Luis'
 #stationID = 'Los Angeles'
-stationID = 'Friday Harbor'
+#stationID = 'Friday Harbor'
+
 
 GMToffset = 8 # Time zone correction for the site's local standard time zone
 			  # relative to Greenwich Mean Time. 
@@ -34,6 +35,10 @@ GMToffset = 8 # Time zone correction for the site's local standard time zone
 			  # savings time zone (March thru November). 
 # Find row index of the desired station in the harms list
 stInd = grep(stationID, harms$station)
+
+if (length(stInd) < 1) {
+	cat('\a No matching site found\n')
+}
 
 # If there are multiple matches to the stationID given, have the user
 # choose the appropriate station.
@@ -135,9 +140,9 @@ sink(file = paste(libdirname,libnamecpp, sep = '/'), type = 'output',
 cat('/* ', libnamecpp, '\n')
 cat(' This source file contains a tide calculation function for the site listed\n')
 cat(' below. This file and the associated header file should be placed in the\n')
-cat(' Ardiuno/libraries/ directory inside a single folder.\n')
-cat(' Luke Miller, June 2012\n')
-cat(' https://github.com/millerlp/Tide_calculator\n')
+cat(' Ardiuno/arduino-1.x.x/libraries/ directory inside a single folder.\n')
+cat(' Luke Miller, Sep 2012\n')
+cat(' http://github.com/millerlp/Tide_calculator\n')
 cat(' Released under the GPL version 3 license.\n')
 cat(' The harmonic constituents used here were originally derived from \n')
 cat(' XTide, available at http://www.flaterco.com/xtide/files.html\n')
@@ -167,8 +172,8 @@ cat('put new site values in here by hand.\n')
 cat('The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.\n')
 cat('*/\n\n')
 
-cat('// Selected station: ', harms1$station,'\n')
-cat('char stationID[] = "', harms1$station,'";\n')
+cat('// Selected station: ', harms1$station, '\n', sep = '')
+cat('char stationID[] = "', harms1$station, '";\n', sep = '')
 cat("// The 'datum' printed here is the difference between mean sea level and \n") 
 cat("// mean lower low water for the NOAA station. These two values can be \n") 
 cat("// found for NOAA tide reference stations on the tidesandcurrents.noaa.gov\n")
