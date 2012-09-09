@@ -62,6 +62,17 @@ void setup(void)
   printTime(now);  // Call printTime function to print date/time to serial
   Serial.println("Calculating tides for: ");
   Serial.println(myTideCalc.returnStationID());
+
+  // Calculate new tide height based on current time
+  results = myTideCalc.currentTide(now);
+
+  //*****************************************
+  // For debugging
+  Serial.print("Tide height: ");
+  Serial.print(results, 3);
+  Serial.println(" ft.");
+  Serial.println(); // blank line
+
   delay(2000);
 }  // End of setup loop
 

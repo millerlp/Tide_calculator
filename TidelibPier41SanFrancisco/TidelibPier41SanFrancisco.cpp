@@ -1,9 +1,9 @@
-/*  TidelibSanFranciscoNorthPoint.cpp 
+/*  TidelibPier41SanFrancisco.cpp 
  This source file contains a tide calculation function for the site listed
  below. This file and the associated header file should be placed in the
- Ardiuno/libraries/ directory inside a single folder.
- Luke Miller, June 2012
- https://github.com/millerlp/Tide_calculator
+ Ardiuno/arduino-1.x.x/libraries/ directory inside a single folder.
+ Luke Miller, Sep 2012
+ http://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.
  The harmonic constituents used here were originally derived from 
  XTide, available at http://www.flaterco.com/xtide/files.html
@@ -14,7 +14,7 @@
 #include <Wire.h>
 #include <avr/pgmspace.h>
 #include "RTClib.h"
-#include "TidelibSanFranciscoNorthPoint.h"
+#include "TidelibPier41SanFrancisco.h"
 
 unsigned int YearIndx = 0; // Used to index rows in the Equilarg/Nodefactor arrays
 float currHours = 0;          // Elapsed hours since start of year
@@ -33,8 +33,8 @@ put new site values in here by hand.
 The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.
 */
 
-// Selected station:  North Point, Pier 41, San Francisco, San Francisco Bay, California 
-char stationID[] = " North Point, Pier 41, San Francisco, San Francisco Bay, California ";
+// Selected station: North Point, Pier 41, San Francisco, San Francisco Bay, California
+char stationID[] = "North Point, Pier 41, San Francisco, San Francisco Bay, California";
 // The 'datum' printed here is the difference between mean sea level and 
 // mean lower low water for the NOAA station. These two values can be 
 // found for NOAA tide reference stations on the tidesandcurrents.noaa.gov

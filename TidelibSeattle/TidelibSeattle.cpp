@@ -33,8 +33,8 @@ put new site values in here by hand.
 The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.
 */
 
-// Selected station:  Seattle, Puget Sound, Washington 
-char stationID[] = " Seattle, Puget Sound, Washington ";
+// Selected station: Seattle, Puget Sound, Washington
+char stationID[] = "Seattle, Puget Sound, Washington";
 // The 'datum' printed here is the difference between mean sea level and 
 // mean lower low water for the NOAA station. These two values can be 
 // found for NOAA tide reference stations on the tidesandcurrents.noaa.gov
