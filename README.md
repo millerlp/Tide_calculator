@@ -10,18 +10,17 @@ Installation:
 
 To generate a prediction of the current tide height for a site, install the following:
 
-1. Copy the RTClib folder into arduino-1.0.1/libraries/
+1. Copy the RTClib folder into Arduino/libraries/. If you don't already have a folder called 'libraries' inside your Arduino folder, go ahead and create one now. 
 
-2. Copy the folder with the library for your site (i.e. TidelibMontereyHarbor) into arduino-1.0.1/libraries/
+2. Copy the folder with the library for your site (i.e. TidelibMontereyHarbor) into Arduino/libraries/
 
-
-4. Open the Tide_calculator example sketch in the Arduino IDE by going to File>Examples>TidelibMontereyHarbor>Tide_calculator. The code to call the tide prediction library is referenced in the Initial Setup section, near line 44, with a line like:
+3. Open the Tide_calculator example sketch in the Arduino IDE by going to File>Examples>TidelibMontereyHarbor>Tide_calculator. The code to call the tide prediction library is referenced in the Initial Setup section, near line 44, with a line like:
 
 	\#include "TidelibMontereyHarbor.h"
 
-That line should contain the name of the library for your local site that you copied into arduino-1.0.1/libraries/.
+That line should contain the name of the library for your local site that you copied into Arduino/libraries/.
 
-5. Plug the Arduino in to the computer using a USB cable. Upload the program to the Arduino. 
+4. Plug the Arduino in to the computer using a USB cable. Upload the program to the Arduino. 
 Open the serial monitor to view the output. See the http://arduino.cc site for help with 
 these steps. 
 
