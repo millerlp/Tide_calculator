@@ -20,12 +20,16 @@
 load('Harmonics_20120302.Rdata')
 
 # Specify a search string that will hopefully only return a single station
+# Find the name for your site by looking through the XTide website 
+# http://www.flaterco.com/xtide/locations.html
+
 #stationID = 'San Diego, San Diego Bay'
-#stationID = 'Monterey Harbor'
-stationID = 'Pier 41, San Francisco'
+stationID = 'Monterey Harbor'
+#stationID = 'Pier 41, San Francisco'
 #stationID = 'Port San Luis'
 #stationID = 'Los Angeles'
 #stationID = 'Friday Harbor'
+#stationID = 'Charleston, Cooper River Entrance, South Carolina' # GMToffset = 5
 
 
 GMToffset = 8 # Time zone correction for the site's local standard time zone
