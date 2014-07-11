@@ -6,6 +6,9 @@ have downloaded and installed the latest version of the Arduino software (1.0.1 
 and have an Arduino with attached real time clock, based on either a DS1307 or DS3231
 I2C-based chip.
 
+Download:
+If you don't already have a git application installed and don't want to deal with learning git, you can simply download these files using the Download ZIP link on the right side of the webpage. Extract the ZIP archive and grab the directories you need (detailed below in the Installation section). 
+
 Installation:
 
 To generate a prediction of the current tide height for a site, install the following:
