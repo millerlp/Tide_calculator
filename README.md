@@ -41,7 +41,7 @@ standard time** of the location you're making predictions for. Do not use Daylig
 adjustments, this library only works in Standard Time. 
 
 After running the RealTimeClock_reset_exact or RealTimeClock_reset sketch, before unplugging the Arduino, 
-immediately upload a different sketch (such as RealTimeClock_read.ino sketch) to the Arduino so that the 
+immediately upload a different sketch (such as the RealTimeClock_read.ino sketch) to the Arduino so that the 
 clock doesn't try to reset itself repeatedly when the Arduino restarts.
 
 The RealTimeClock_reset_exact.ino and RealTimeClock_read.ino sketches were contributed by
