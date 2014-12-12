@@ -36,8 +36,8 @@ Find the sketch "RealTimeClock_reset_exact.ino" or "RealTimeClock_reset.ino" in 
 GitHub directory. Read the instructions at the top of either sketch to see how to use it
 to set the Real Time Clock. "RealTimeClock_reset_exact" is more useful if you want the time
 to be as close to correct as possible (for instance if you're also going to be displaying the
-time with seconds values). *Always* make sure that you set the real time clock to the local
-standard time of the location you're making predictions for. Do not use Daylight Savings Time 
+time with seconds values). *Always* make sure that you set the real time clock to the **local
+standard time** of the location you're making predictions for. Do not use Daylight Savings Time 
 adjustments, this library only works in Standard Time. 
 
 After running the RealTimeClock_reset_exact or RealTimeClock_reset sketch, before unplugging the Arduino, 
