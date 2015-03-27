@@ -1,7 +1,7 @@
 /*  TidelibSantaBarbara.h 
   A library for calculating the current tide height at 
    Santa Barbara, Pacific Ocean, California 
-  Luke Miller, June 2012
+  Luke Miller, 2015-03-27 
   https://github.com/millerlp/Tide_calculator
 */ 
  

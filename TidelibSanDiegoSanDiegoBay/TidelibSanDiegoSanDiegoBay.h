@@ -1,7 +1,7 @@
 /*  TidelibSanDiegoSanDiegoBay.h 
   A library for calculating the current tide height at 
    San Diego, San Diego Bay, California 
-  Luke Miller, June 2012
+  Luke Miller, 2015-03-27 
   https://github.com/millerlp/Tide_calculator
 */ 
  
