@@ -14,7 +14,7 @@ If you don't already have a git application installed and don't want to deal wit
 
 To generate a prediction of the current tide height for a site, install the following:
 
-1. Copy the RTClib folder into Arduino/libraries/. If you don't already have a folder called 'libraries' inside your Arduino folder, go ahead and create one now. 
+1. Install a copy of RTClib in your Arduino/libraries/ directory. If there is not already a libraries directory, create it now. RTClib can be downloaded from https://github.com/millerlp/RTClib. If the copy you download and unzip is called "RTClib-master", rename the folder to simply be "RTClib".
 
 2. Copy the folder with the library for your site (i.e. TidelibMontereyHarbor) into Arduino/libraries/
 
@@ -32,20 +32,18 @@ these steps.
 ### Setting a DS1307 or DS3231 Real Time Clock
 If the real time clock attached to the Arduino is not yet set, you need to set it one time.
 
-Find the sketch "RealTimeClock_reset_exact.ino" or "RealTimeClock_reset.ino" in the Tide_calculator
-GitHub directory. Read the instructions at the top of either sketch to see how to use it
-to set the Real Time Clock. "RealTimeClock_reset_exact" is more useful if you want the time
-to be as close to correct as possible (for instance if you're also going to be displaying the
-time with seconds values). *Always* make sure that you set the real time clock to the **local
-standard time** of the location you're making predictions for. Do not use Daylight Savings Time 
-adjustments, this library only works in Standard Time. 
+If the real time clock attached to the Arduino is not yet set, you need to set it one time 
+before loading the tide prediction software onto the Arduino. Open the Arduino software and 
+go to File>Examples>RTClib>settime_exact.ino. Follow the instructions at the top of that 
+sketch to upload the correct time to your real time clock. Make sure the time you enter 
+is in your local standard time, not Daylight Savings Time (which runs Mar-Nov in most places). 
+The tide prediction routine relies on the time being set to local standard time for your site, 
+otherwise you won't get the current tide height out. After running the settime_exact.ino sketch, 
+before unplugging the Arduino, immediately upload a different sketch (such as the 
+example Tide_calculator sketch from the tide prediction library you grabbed here) to the Arduino 
+so that the clock doesn't try to reset itself repeatedly when the Arduino restarts.
 
-After running the RealTimeClock_reset_exact or RealTimeClock_reset sketch, before unplugging the Arduino, 
-immediately upload a different sketch (such as the RealTimeClock_read.ino sketch) to the Arduino so that the 
-clock doesn't try to reset itself repeatedly when the Arduino restarts.
-
-The RealTimeClock_reset_exact.ino and RealTimeClock_read.ino sketches were contributed by
-Robert Lozyniak. 
+The settime_exact.ino sketch was contributed by Robert Lozyniak. 
 
 -------------------------------
 ### Generating tide prediction libaries for other sites
