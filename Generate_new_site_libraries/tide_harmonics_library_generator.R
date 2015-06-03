@@ -20,16 +20,14 @@
 load('Harmonics_20120302.Rdata')
 
 # Specify a search string that will hopefully only return a single station
-# Find the name for your site by looking through the XTide website 
-# http://www.flaterco.com/xtide/locations.html
-
 #stationID = 'San Diego, San Diego Bay'
+#stationID = 'La Jolla'
 stationID = 'Monterey Harbor'
 #stationID = 'Pier 41, San Francisco'
 #stationID = 'Port San Luis'
 #stationID = 'Los Angeles'
 #stationID = 'Friday Harbor'
-#stationID = 'Charleston, Cooper River Entrance, South Carolina' # GMToffset = 5
+#stationID = 'Charleston, Cooper River Entrance, South Carolina'
 
 
 GMToffset = 8 # Time zone correction for the site's local standard time zone
@@ -89,7 +87,7 @@ year.ind = curr.year - harms$startyear + 1
 # The maximum number of years to hold is a function of the available program 
 # memory space on the microcontroller (Arduino 328P = 30 kb). Ten years of data
 # will consume roughly 10 kb in a minimal example sketch. 
-keep.years = 10
+keep.years = 24
 
 # Extract the useful bits from the harms list, keeping only data for the 
 # desired tide station.
@@ -144,12 +142,18 @@ sink(file = paste(libdirname,libnamecpp, sep = '/'), type = 'output',
 cat('/* ', libnamecpp, '\n')
 cat(' This source file contains a tide calculation function for the site listed\n')
 cat(' below. This file and the associated header file should be placed in the\n')
-cat(' Ardiuno/libraries/ directory inside a single folder.\n')
-cat(' Luke Miller, Sep 2012\n')
+cat(' Arduino/libraries/ directory inside a single folder.\n')
+cat(' Luke Miller, ')
+cat(strftime(curr.date, format = '%Y-%m-%d'),'\n')
 cat(' http://github.com/millerlp/Tide_calculator\n')
 cat(' Released under the GPL version 3 license.\n')
+cat(' Compiled for Arduino v1.6.4 circa 2015\n\n')
 cat(' The harmonic constituents used here were originally derived from \n')
-cat(' XTide, available at http://www.flaterco.com/xtide/files.html\n')
+cat(' the Center for Operational Oceanic Products and Services (CO-OPS),\n')
+cat(' National Ocean Service (NOS), National Oceanic and Atmospheric \n')
+cat(' Administration, U.S.A.\n')
+cat(' The data were originally processed by David Flater for use with XTide,\n')
+cat(' available at http://www.flaterco.com/xtide/files.html\n')
 cat(' The predictions from this program should not be used for navigation\n')
 cat(' and no accuracy or warranty is given or implied for these tide predictions.\n')
 cat(' */\n')
@@ -188,13 +192,16 @@ cat(harms1$name, sep = ', ')
 cat('\n')
 cat("// These names match the NOAA names, except LDA2 here is LAM2 on NOAA's site\n")
 cat("typedef float PROGMEM prog_float_t; // Need to define this type before use\n")
+cat("// Amp is the amplitude of each of the harmonic constituents for this site\n")
 cat('const prog_float_t Amp[] PROGMEM = {')
 cat(harms1$A, sep = ',')
 cat('};\n')
+cat("// Kappa is the 'modified' or 'adapted' phase lag (Epoch) of each of the \n")
+cat(" harmonic constituents for this site.\n")
 cat('const prog_float_t Kappa[] PROGMEM = {')
 cat(harms1$kappa, sep = ',')
 cat('};\n')
-
+cat("// Speed is the frequency of the constituent, denoted as little 'a' by Hicks 2006\n")
 cat('const prog_float_t Speed[] PROGMEM = {')
 cat(harms1$speed, sep = ',')
 cat('};\n')
@@ -280,7 +287,8 @@ sink(file = paste(libdirname,libnameh,sep = '/'), type = 'output',
 cat('/* ', libnameh,'\n')
 cat('  A library for calculating the current tide height at \n')
 cat('  ', harms1$station, '\n')
-cat('  Luke Miller, June 2012\n')
+cat('  Luke Miller, ')
+cat(strftime(curr.date, format = '%Y-%m-%d'),'\n')
 cat('  https://github.com/millerlp/Tide_calculator\n')
 cat('*/ \n \n')
 libnameh2 = paste(libname, '_h', sep = '')
@@ -311,12 +319,14 @@ sink() # Close keywords.txt file
 sink(file = paste(libdirname,'/examples/Tide_calculator/',libexample,sep = ''), 
 		type = 'output', split = TRUE, append = FALSE)
 cat('/* ', libexample, '\n')
-cat(' Copyright (c) 2012 Luke Miller\n')
+cat(' Copyright (c) ')
+cat(strftime(curr.date, format = '%Y'),'\n')
+cat('Luke Miller\n')
 cat('This code calculates the current tide height for the \n')
 cat('pre-programmed site. It requires a real time clock\n')
 cat('(DS1307 or DS3231 chips) to generate a time for the calculation.\n')
 cat('The site is set by the name of the included library (see line 44 below)\n\n')
-cat('Written under version 1.0.6 and 1.6.1 of the Arduino IDE.\n\n')
+cat('Written under version 1.6.4 of the Arduino IDE.\n\n')
 cat('This program is free software: you can redistribute it and/or modify\n')
 cat('it under the terms of the GNU General Public License as published by\n')
 cat('the Free Software Foundation, either version 3 of the License, or \n')
@@ -327,21 +337,25 @@ cat('MERCHANTIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n')
 cat('GNU General Public License for more details.\n\n')
 cat('You should have received a copy of the GNU General Public License\n')
 cat('along with this program. If not, see http://www.gnu.org/licenses/\n\n')
-cat('The harmonic constants for the tide prediction are taken from the\n')
-cat('XTide harmonics file, developed by David Flater. The original \n')
-cat('harmonics.tcd file is available at\n')
-cat('http://www.flaterco.com/xtide/files.html\n')
+cat(' The harmonic constituents used here were originally derived from \n')
+cat(' the Center for Operational Oceanic Products and Services (CO-OPS),\n')
+cat(' National Ocean Service (NOS), National Oceanic and Atmospheric \n')
+cat(' Administration, U.S.A.\n')
+cat(' The data were originally processed by David Flater for use with XTide,\n')
+cat(' available at http://www.flaterco.com/xtide/files.html\n')
 cat('As with XTide, the predictions generated by this program should \n')
 cat('NOT be used for navigation, and no accuracy or warranty is given\n')
 cat('or implied for these tide predictions. The chances are pretty good\n')
 cat('that the tide predictions generated here are completely wrong.\n')
+cat('NOTE: As of now, this sketch will probably fail if run in the\n')
+cat('year 2037 or later, due to the unix time values rolling over.\n')
 cat('*/ \n')
 cat('//--------------------------------------------------------------\n')
 cat('//Initial setup\n')
 cat('//Header files for talking to real time clock\n')
 cat('#include <Wire.h> // Required for RTClib\n')
 cat('#include <SPI.h> // Required for RTClib to compile properly\n')
-cat('#include <RTClib.h> // From https://github.com/millerlp/RTClib\n')
+cat('#include <RTClib.h> // From http://github.com/MrAlvin/RTClib\n')
 cat('// Real Time Clock setup\n')
 cat('RTC_DS1307 RTC;  // Uncomment when using this chip\n')
 cat('// RTC_DS3231 RTC; // Uncomment when using this chip\n\n')

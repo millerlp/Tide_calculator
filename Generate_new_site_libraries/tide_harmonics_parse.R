@@ -1,6 +1,7 @@
 # Filename: tide_harmonics_parse.R
 # 
 # Author: Luke Miller  May 1, 2012
+# Updated 2015-06-03 to use new harmonics input file from 2014-12-24
 ###############################################################################
 # This is essentially a one-time use script to call the read_harmonicsfile.R 
 # functions and parse the tidal harmonics file from XTide. The resulting data 
@@ -17,7 +18,7 @@
 source('./read_harmonicsfile.R')
 
 # Create a connection to the harmonics text file for reading.
-fid = file('W:/xtide/harmonics-dwf-20120302-free.txt', open = 'r')
+fid = file('W:/xtide/harmonics-20141224.txt', open = 'r')
 
 # Call the read_harmonicsfile function (found in read_harmonicsfile.R) to parse
 # the harmonics file into a usable format.
@@ -62,5 +63,5 @@ harms = harms2
 
 # Save the results to a Rdata file, since there's no need to re-parse the 
 # harmonics file once you've done it once. 
-save(harms, file = 'Harmonics_20120302.Rdata')
+save(harms, file = 'Harmonics_20141224.Rdata')
 

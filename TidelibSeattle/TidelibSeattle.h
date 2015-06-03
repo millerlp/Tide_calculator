@@ -1,7 +1,7 @@
 /*  TidelibSeattle.h 
   A library for calculating the current tide height at 
    Seattle, Puget Sound, Washington 
-  Luke Miller, 2015-03-27 
+  Luke Miller, 2015-06-03 
   https://github.com/millerlp/Tide_calculator
 */ 
  

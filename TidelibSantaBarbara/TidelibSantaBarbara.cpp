@@ -2,11 +2,17 @@
  This source file contains a tide calculation function for the site listed
  below. This file and the associated header file should be placed in the
  Ardiuno/libraries/ directory inside a single folder.
- Luke Miller, 2015-03-27 
+ Luke Miller, 2015-06-03 
  http://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.
+ Compiled for Arduino v1.6.4 circa 2015
+
  The harmonic constituents used here were originally derived from 
- XTide, available at http://www.flaterco.com/xtide/files.html
+ the Center for Operational Oceanic Products and Services (CO-OPS),
+ National Ocean Service (NOS), National Oceanic and Atmospheric 
+ Administration, U.S.A.
+ The data were originally processed by David Flater for use with XTide,
+ available at http://www.flaterco.com/xtide/files.html
  The predictions from this program should not be used for navigation
  and no accuracy or warranty is given or implied for these tide predictions.
  */
@@ -33,8 +39,8 @@ put new site values in here by hand.
 The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.
 */
 
-// Selected station: Santa Barbara, Pacific Ocean, California
-char stationID[] = "Santa Barbara, Pacific Ocean, California";
+// Selected station: Santa Barbara, California
+char stationID[] = "Santa Barbara, California";
 // The 'datum' printed here is the difference between mean sea level and 
 // mean lower low water for the NOAA station. These two values can be 
 // found for NOAA tide reference stations on the tidesandcurrents.noaa.gov
@@ -43,8 +49,12 @@ const float Datum = 2.7887 ; // units in feet
 // Harmonic constant names: J1, K1, K2, L2, M1, M2, M3, M4, M6, M8, N2, 2N2, O1, OO1, P1, Q1, 2Q1, R2, S1, S2, S4, S6, T2, LDA2, MU2, NU2, RHO1, MK3, 2MK3, MN4, MS4, 2SM2, MF, MSF, MM, SA, SSA
 // These names match the NOAA names, except LDA2 here is LAM2 on NOAA's site
 typedef float PROGMEM prog_float_t; // Need to define this type before use
+// Amp is the amplitude of each of the harmonic constituents for this site
 const prog_float_t Amp[] PROGMEM = {0.072,1.145,0.151,0.03,0.039,1.572,0.003,0.013,0.003,0.003,0.377,0.046,0.745,0.036,0.371,0.135,0.02,0,0.013,0.548,0.003,0,0.016,0.02,0.036,0.069,0.026,0.016,0.013,0.003,0.013,0.013,0,0,0,0.259,0};
+// Kappa is the 'modified' or 'adapted' phase lag (Epoch) of each of the 
+ harmonic constituents for this site.
 const prog_float_t Kappa[] PROGMEM = {224.8,213.8,145.7,211.7,224.6,157.8,350,55.9,329.4,45.4,135.5,110.4,197.3,238.7,210.3,187.2,198.8,0,278.9,151.2,26,0,142.5,172.1,87.1,143,192.4,130.3,76.1,73.6,75.3,343,0,0,0,156.8,0};
+// Speed is the frequency of the constituent, denoted as little 'a' by Hicks 2006
 const prog_float_t Speed[] PROGMEM = {15.58544,15.04107,30.08214,29.52848,14.49669,28.9841,43.47616,57.96821,86.95231,115.9364,28.43973,27.89535,13.94304,16.1391,14.95893,13.39866,12.85429,30.04107,15,30,60,90,29.95893,29.45563,27.96821,28.51258,13.47151,44.02517,42.92714,57.42383,58.9841,31.0159,1.098033,1.015896,0.5443747,0.0410686,0.0821373};
 const prog_float_t Equilarg[10][37] PROGMEM = { 
 {83.38,11.3,202.4,3.66,322.99,110.42,165.63,220.84,331.26,81.68,38.87,327.32,98.58,105.09,349.67,27.03,315.49,177.14,180,0,0,0,2.86,108.65,220.64,292.19,280.36,121.72,209.54,149.29,110.42,249.58,93.25,249.58,71.55,280.33,200.67},

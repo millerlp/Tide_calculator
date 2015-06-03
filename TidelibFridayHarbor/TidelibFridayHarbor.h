@@ -1,7 +1,7 @@
 /*  TidelibFridayHarbor.h 
   A library for calculating the current tide height at 
    Friday Harbor, San Juan Island, San Juan Channel, Washington 
-  Luke Miller, 2015-03-27 
+  Luke Miller, 2015-06-03 
   https://github.com/millerlp/Tide_calculator
 */ 
  

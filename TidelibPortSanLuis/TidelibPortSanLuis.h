@@ -1,7 +1,7 @@
 /*  TidelibPortSanLuis.h 
   A library for calculating the current tide height at 
-   Port San Luis, Pacific Ocean, California 
-  Luke Miller, 2015-03-27 
+   Port San Luis, California 
+  Luke Miller, 2015-06-03 
   https://github.com/millerlp/Tide_calculator
 */ 
  
