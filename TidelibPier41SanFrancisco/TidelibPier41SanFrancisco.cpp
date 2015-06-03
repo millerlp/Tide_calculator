@@ -52,7 +52,7 @@ typedef float PROGMEM prog_float_t; // Need to define this type before use
 // Amp is the amplitude of each of the harmonic constituents for this site
 const prog_float_t Amp[] PROGMEM = {0.062,1.234,0.135,0.062,0.043,1.991,0.03,0.095,0,0,0.423,0.046,0.758,0.043,0.39,0.131,0.016,0.003,0.023,0.463,0,0,0.026,0.026,0.023,0.089,0.033,0.085,0.062,0.036,0.039,0,0,0,0,0.125,0.128};
 // Kappa is the 'modified' or 'adapted' phase lag (Epoch) of each of the 
- harmonic constituents for this site.
+// harmonic constituents for this site.
 const prog_float_t Kappa[] PROGMEM = {248.5,226.8,211.5,225.5,248.5,213.3,29.8,135.9,0,0,187,154.1,209.7,262.7,223.8,202.7,186.3,221,276.5,220.7,0,0,201.8,215,88.1,191.6,198.4,124,91.5,108.6,147.1,0,0,0,0,221.4,286.9};
 // Speed is the frequency of the constituent, denoted as little 'a' by Hicks 2006
 const prog_float_t Speed[] PROGMEM = {15.58544,15.04107,30.08214,29.52848,14.49669,28.9841,43.47616,57.96821,86.95231,115.9364,28.43973,27.89535,13.94304,16.1391,14.95893,13.39866,12.85429,30.04107,15,30,60,90,29.95893,29.45563,27.96821,28.51258,13.47151,44.02517,42.92714,57.42383,58.9841,31.0159,1.098033,1.015896,0.5443747,0.0410686,0.0821373};
