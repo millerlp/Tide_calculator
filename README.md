@@ -2,7 +2,7 @@ Tide_controller
 ===============
 
 Arduino code and associated files for calculating tide height. This assumes that you 
-have downloaded and installed the latest version of the Arduino software (1.0.1 or newer), 
+have downloaded and installed the latest version of the Arduino software (1.6.4 or newer), 
 and have an Arduino with attached real time clock, based on either a DS1307 or DS3231
 I2C-based chip. If you real time clock hasn't previously been set, see the clock section below
 for info on how to do this. 
@@ -16,7 +16,7 @@ To generate a prediction of the current tide height for a site, install the foll
 
 1. Install a copy of RTClib in your Arduino/libraries/ directory. If there is not already a libraries directory, create it now. RTClib can be downloaded from https://github.com/millerlp/RTClib. If the copy you download and unzip is called "RTClib-master", rename the folder to simply be "RTClib".
 
-2. Copy the folder with the library for your site (i.e. TidelibMontereyHarbor) into Arduino/libraries/
+2. Copy the folder with the library for your site (i.e. TidelibMontereyHarbor) into Arduino/libraries/. As with the RTClib download, if the folder you unzip has "-master" tacked on to the name, remove "-master" from the folder name when you put it into the Arduino/libraries/ directory.
 
 3. Open the Tide_calculator example sketch in the Arduino IDE by going to File>Examples>TidelibMontereyHarbor>Tide_calculator. The code to call the tide prediction library is referenced in the Initial Setup section, near line 44, with a line like:
 
@@ -50,7 +50,7 @@ The settime_exact.ino sketch was contributed by Robert Lozyniak.
 If there is no folder containing a tide prediction library for your desired site, it
 will be necessary to generate a library using the R scripts found in the 
 Generate_new_site_libraries directory. The harmonic data for NOAA sites are all in
-the Harmonics_20120302.Rdata file. With these data, you can generate a new library
+the Harmonics_20141224.Rdata file. With these data, you can generate a new library
 by running the R script tide_harmonics_library_generator.R. Inside that file, you must
 enter a name for the site you're interested in on the line
 stationID = 'Monterey Harbor'
@@ -58,7 +58,7 @@ Change the value inside the quote marks to match your site, save the file, and r
 script in R. It will create a new directory with the necessary library files inside that
 can be copied into the Arduino/libraries/ folder. Find the name for your site by looking 
 through the XTide website http://www.flaterco.com/xtide/locations.html 
-XTide only produces harmonics for 635 reference tide stations (all others are approximated 
+XTide only produces harmonics for ~865 reference tide stations (all others are approximated 
 from these tide stations), so you need to find the nearest station listed as "Ref" on that 
 page, rather than "Sub" stations.
 
