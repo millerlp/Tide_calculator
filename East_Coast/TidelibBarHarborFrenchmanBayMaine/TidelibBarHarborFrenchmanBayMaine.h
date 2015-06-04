@@ -1,12 +1,12 @@
-/*  TidelibLosAngelesouterharborCalifornia.h 
+/*  TidelibBarHarborFrenchmanBayMaine.h 
   A library for calculating the current tide height at 
-   Los Angeles (outer harbor), California 
+   Bar Harbor, Frenchman Bay, Maine 
   Luke Miller, 2015-06-03 
   https://github.com/millerlp/Tide_calculator
 */ 
  
-#ifndef  TidelibLosAngelesouterharborCalifornia_h 
-#define  TidelibLosAngelesouterharborCalifornia_h 
+#ifndef  TidelibBarHarborFrenchmanBayMaine_h 
+#define  TidelibBarHarborFrenchmanBayMaine_h 
 #include <Arduino.h>
 #include <avr/pgmspace.h>
 #include <Wire.h>

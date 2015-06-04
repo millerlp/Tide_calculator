@@ -39,21 +39,21 @@ put new site values in here by hand.
 The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.
 */
 
-// Selected station: 
-char stationID[] = "";
+// Selected station: Cape Charles Harbor (USCG Wharf), Chesapeake Bay, Virginia
+char stationID[] = "Cape Charles Harbor (USCG Wharf), Chesapeake Bay, Virginia";
 // The 'datum' printed here is the difference between mean sea level and 
 // mean lower low water for the NOAA station. These two values can be 
 // found for NOAA tide reference stations on the tidesandcurrents.noaa.gov
 //  site under the datum page for each station.
-const float Datum =  ; // units in feet
+const float Datum = 1.21 ; // units in feet
 // Harmonic constant names: J1, K1, K2, L2, M1, M2, M3, M4, M6, M8, N2, 2N2, O1, OO1, P1, Q1, 2Q1, R2, S1, S2, S4, S6, T2, LDA2, MU2, NU2, RHO1, MK3, 2MK3, MN4, MS4, 2SM2, MF, MSF, MM, SA, SSA
 // These names match the NOAA names, except LDA2 here is LAM2 on NOAA's site
 typedef float PROGMEM prog_float_t; // Need to define this type before use
 // Amp is the amplitude of each of the harmonic constituents for this site
-const prog_float_t Amp[] PROGMEM = {};
+const prog_float_t Amp[] PROGMEM = {0.01,0.171,0.053,0.032,0.01,1.121,0,0.037,0.013,0.002,0.25,0.034,0.124,0.007,0.056,0.024,0.003,0,0,0.198,0.007,0.003,0.013,0.007,0.026,0.048,0.004,0,0,0,0,0,0,0,0,0.19,0.128};
 // Kappa is the 'modified' or 'adapted' phase lag (Epoch) of each of the 
 // harmonic constituents for this site.
-const prog_float_t Kappa[] PROGMEM = {};
+const prog_float_t Kappa[] PROGMEM = {189.5,198.4,71.7,64.5,207.3,44.3,0,325.4,333.2,166.8,24.2,4.3,216.6,180.4,199.8,225.9,234.2,0,0,69.6,307.7,248,68.6,56.1,19,26.9,227.3,0,0,0,0,0,0,0,0,150.6,37.6};
 // Speed is the frequency of the constituent, denoted as little 'a' by Hicks 2006
 const prog_float_t Speed[] PROGMEM = {15.58544,15.04107,30.08214,29.52848,14.49669,28.9841,43.47616,57.96821,86.95231,115.9364,28.43973,27.89535,13.94304,16.1391,14.95893,13.39866,12.85429,30.04107,15,30,60,90,29.95893,29.45563,27.96821,28.51258,13.47151,44.02517,42.92714,57.42383,58.9841,31.0159,1.098033,1.015896,0.5443747,0.0410686,0.0821373};
 const prog_float_t Equilarg[10][37] PROGMEM = { 

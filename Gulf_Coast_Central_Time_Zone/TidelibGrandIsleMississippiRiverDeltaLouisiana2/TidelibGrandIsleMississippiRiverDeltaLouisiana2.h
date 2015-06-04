@@ -1,6 +1,6 @@
 /*  TidelibGrandIsleMississippiRiverDeltaLouisiana2.h 
   A library for calculating the current tide height at 
-    
+   Grand Isle, Mississippi River Delta, Louisiana (2) 
   Luke Miller, 2015-06-03 
   https://github.com/millerlp/Tide_calculator
 */ 

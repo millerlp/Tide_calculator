@@ -1,4 +1,4 @@
-/*  TidelibHatterasUSCGStationNorthCarolina.cpp 
+/*  TidelibBarHarborFrenchmanBayMaine.cpp 
  This source file contains a tide calculation function for the site listed
  below. This file and the associated header file should be placed in the
  Ardiuno/libraries/ directory inside a single folder.
@@ -20,7 +20,7 @@
 #include <Wire.h>
 #include <avr/pgmspace.h>
 #include "RTClib.h"
-#include "TidelibHatterasUSCGStationNorthCarolina.h"
+#include "TidelibBarHarborFrenchmanBayMaine.h"
 
 unsigned int YearIndx = 0; // Used to index rows in the Equilarg/Nodefactor arrays
 float currHours = 0;          // Elapsed hours since start of year
@@ -39,21 +39,21 @@ put new site values in here by hand.
 The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.
 */
 
-// Selected station: Hatteras (USCG Station), North Carolina
-char stationID[] = "Hatteras (USCG Station), North Carolina";
+// Selected station: Bar Harbor, Frenchman Bay, Maine
+char stationID[] = "Bar Harbor, Frenchman Bay, Maine";
 // The 'datum' printed here is the difference between mean sea level and 
 // mean lower low water for the NOAA station. These two values can be 
 // found for NOAA tide reference stations on the tidesandcurrents.noaa.gov
 //  site under the datum page for each station.
-const float Datum = 0.2822 ; // units in feet
+const float Datum = 5.6693 ; // units in feet
 // Harmonic constant names: J1, K1, K2, L2, M1, M2, M3, M4, M6, M8, N2, 2N2, O1, OO1, P1, Q1, 2Q1, R2, S1, S2, S4, S6, T2, LDA2, MU2, NU2, RHO1, MK3, 2MK3, MN4, MS4, 2SM2, MF, MSF, MM, SA, SSA
 // These names match the NOAA names, except LDA2 here is LAM2 on NOAA's site
 typedef float PROGMEM prog_float_t; // Need to define this type before use
 // Amp is the amplitude of each of the harmonic constituents for this site
-const prog_float_t Amp[] PROGMEM = {0.007,0.026,0.007,0.007,0.003,0.141,0,0.013,0.01,0.003,0.033,0.003,0.02,0.007,0.023,0.003,0.007,0.003,0.043,0.023,0.003,0.003,0.003,0,0.003,0.007,0.007,0.003,0.003,0.007,0.007,0,0.062,0.023,0.128,0.325,0.157};
+const prog_float_t Amp[] PROGMEM = {0.027,0.458,0.22,0.259,0.021,5.185,0,0.025,0.039,0,1.152,0.152,0.361,0.014,0.151,0.064,0.011,0.011,0.021,0.796,0,0,0.071,0.095,0.021,0.24,0.014,0,0.013,0,0,0.017,0,0,0,0,0};
 // Kappa is the 'modified' or 'adapted' phase lag (Epoch) of each of the 
 // harmonic constituents for this site.
-const prog_float_t Kappa[] PROGMEM = {340,240.7,20.2,33.1,317.3,37.3,0,320.2,162.4,167.8,14.2,14.6,214,161.4,270,91.2,134.3,304.6,345.2,84.7,61.3,228.6,171.1,0,206.1,14.1,10.4,194.4,158.2,324.8,345.8,0,0,149.5,52.9,202.3,40};
+const prog_float_t Kappa[] PROGMEM = {202,194.3,127,135,213.4,92.9,0,99.1,47.5,0,62.3,40.4,176.1,238.2,193.6,160.3,171,346.2,163,128.8,0,0,103.5,132.4,38.3,67.5,168.2,0,259.5,0,0,101.6,0,0,0,0,0};
 // Speed is the frequency of the constituent, denoted as little 'a' by Hicks 2006
 const prog_float_t Speed[] PROGMEM = {15.58544,15.04107,30.08214,29.52848,14.49669,28.9841,43.47616,57.96821,86.95231,115.9364,28.43973,27.89535,13.94304,16.1391,14.95893,13.39866,12.85429,30.04107,15,30,60,90,29.95893,29.45563,27.96821,28.51258,13.47151,44.02517,42.92714,57.42383,58.9841,31.0159,1.098033,1.015896,0.5443747,0.0410686,0.0821373};
 const prog_float_t Equilarg[10][37] PROGMEM = { 

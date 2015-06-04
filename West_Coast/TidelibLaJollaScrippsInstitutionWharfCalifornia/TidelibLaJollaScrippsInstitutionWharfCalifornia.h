@@ -1,6 +1,6 @@
 /*  TidelibLaJollaScrippsInstitutionWharfCalifornia.h 
   A library for calculating the current tide height at 
-    
+   La Jolla (Scripps Institution Wharf), California 
   Luke Miller, 2015-06-03 
   https://github.com/millerlp/Tide_calculator
 */ 
