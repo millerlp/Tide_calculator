@@ -2,7 +2,7 @@
  This source file contains a tide calculation function for the site listed
  below. This file and the associated header file should be placed in the
  Ardiuno/libraries/ directory inside a single folder.
- Luke Miller, 2015-06-03 
+ Luke Miller, 2015-06-04 
  http://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.
  Compiled for Arduino v1.6.4 circa 2015
@@ -19,7 +19,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <avr/pgmspace.h>
-#include "RTClib.h"
+#include "RTClib.h" // https://github.com/millerlp/RTClib
 #include "TidelibPortlandCascoBayMaine.h"
 
 unsigned int YearIndx = 0; // Used to index rows in the Equilarg/Nodefactor arrays
@@ -41,6 +41,8 @@ The Speed, Equilarg and Nodefactor arrays can all stay the same for any site.
 
 // Selected station: Portland, Casco Bay, Maine
 char stationID[] = "Portland, Casco Bay, Maine";
+// Selection station ID number: 8418150
+const long stationIDnumber = 8418150;
 // The 'datum' printed here is the difference between mean sea level and 
 // mean lower low water for the NOAA station. These two values can be 
 // found for NOAA tide reference stations on the tidesandcurrents.noaa.gov
@@ -100,6 +102,11 @@ char* TideCalc::returnStationID(void){
     return stationID;
 }
 
+// Return NOAA tide station ID number
+long TideCalc::returnStationIDnumber(void){
+    return stationIDnumber;
+}
+
 // currentTide calculation function, takes a DateTime object from real time clock
 float TideCalc::currentTide(DateTime now) {
 	// Calculate difference between current year and starting year.
@@ -111,6 +118,9 @@ float TideCalc::currentTide(DateTime now) {
    // *****************Calculate current tide height*************
    tideHeight = Datum; // initialize results variable, units of feet.
    for (int harms = 0; harms < 37; harms++) {
+       // Step through each harmonic constituent, extract the relevant
+       // values of Nodefactor, Amplitude, Equilibrium argument, Kappa
+       // and Speed.
        currNodefactor = pgm_read_float_near(&Nodefactor[YearIndx][harms]);
  		currAmp = pgm_read_float_near(&Amp[harms]);
        currEquilarg = pgm_read_float_near(&Equilarg[YearIndx][harms]);
