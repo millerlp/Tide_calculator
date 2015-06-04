@@ -1,0 +1,21 @@
+/*  TidelibNorthPointPier41SanFranciscoSanFranciscoBayCalifornia.h 
+  A library for calculating the current tide height at 
+   North Point, Pier 41, San Francisco, San Francisco Bay, California 
+  Luke Miller, 2015-06-03 
+  https://github.com/millerlp/Tide_calculator
+*/ 
+ 
+#ifndef  TidelibNorthPointPier41SanFranciscoSanFranciscoBayCalifornia_h 
+#define  TidelibNorthPointPier41SanFranciscoSanFranciscoBayCalifornia_h 
+#include <Arduino.h>
+#include <avr/pgmspace.h>
+#include <Wire.h>
+#include "RTClib.h"
+
+class TideCalc {
+ public:
+	 TideCalc();
+    float currentTide(DateTime now);
+    char* returnStationID(void);
+};
+#endif

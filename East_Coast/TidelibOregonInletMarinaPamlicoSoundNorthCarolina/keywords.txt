@@ -1,0 +1,3 @@
+TideCalc    KEYWORD1
+currentTide    KEYWORD2
+returnStationID KEYWORD2
