@@ -35,6 +35,7 @@ harms2 = list(name = harms$name, speed = harms$speed,
 		equilarg = harms$equilarg,
 		nodefactor = harms$nodefactor, 
 		station = NULL,
+		stationIDnumber = NULL,
 		units = NULL,
 		longitude = NULL,
 		latitude = NULL,
@@ -47,6 +48,8 @@ harms2 = list(name = harms$name, speed = harms$speed,
 for (i in 1:length(harms$units)) {
 	if (harms$units[i] == 'feet') {
 		harms2$station = c(harms2$station, harms$station[i])
+		harms2$stationIDnumber = c(harms2$stationIDnumber, 
+				harms$stationIDnumber[i])
 		harms2$units = c(harms2$units, harms$units[i])
 		harms2$longitude = c(harms2$longitude, harms$longitude[i])
 		harms2$latitude = c(harms2$latitude, harms$latitude[i])
@@ -63,5 +66,5 @@ harms = harms2
 
 # Save the results to a Rdata file, since there's no need to re-parse the 
 # harmonics file once you've done it once. 
-save(harms, file = 'Harmonics_20141224.Rdata')
+save(harms, file = 'Harmonics_20141224_2.Rdata')
 

@@ -107,7 +107,8 @@ read_harmonicsfile = function(fid) {
 	# length as data for each station is appended. This isn't a very efficient 
 	# way to do things, but without knowing the exact number of stations in the 
 	# data file when opening the file, this is the most flexible way to do it. 
-	xharm = list(station = vector('character',1), 
+	xharm = list(station = vector('character',1),
+			stationIDnumber = vector('numeric',1),
 			units = vector('character',1),
 			longitude = vector('numeric',1),
 			latitude = vector('numeric',1),
@@ -123,7 +124,9 @@ read_harmonicsfile = function(fid) {
 	
 	# Search for next line that starts with # ! symbols or is a regular 
 	# non-commented line, using the noncom function
-	line = noncom(fid)
+#	line = noncom(fid)
+	# Search for the first line that contains # station_id: 
+	line = noncomST(fid)
 	
 	# Go through the remainder of the file, and finish when you hit a final
 	# empty line (which should be marked -1 by the noncom function).
@@ -136,6 +139,24 @@ read_harmonicsfile = function(fid) {
 		units = ''
 		longitude = 0
 		latitude = 0
+		stationIDnumber = NA
+		
+		# When you hit a line with the # station_id: at the start, parse out
+		# the stationID number
+		if (substr(line,1,13) == '# station_id:') {
+			# Look for numeric digits in the line, this will return -1 if none
+		# are found
+			testID = regexpr("[[:digit:]]",line)
+			if (testID > 0) {
+				# If testID has a valid location in it, use that to pull out
+				# the rest of the line, which is presumably all digits
+				stationIDnumber = as.numeric(substring(line,testID[1]))
+				# If the above fails, stationIDnumber will be NA
+			}
+			# After extracting a station id number, move to the next line
+			line = noncom(fid)
+		}
+		
 		
 		# When you hit a line with the # ! symbols at the start, parse out the 
 		# units and lat/long if available.
@@ -178,6 +199,8 @@ read_harmonicsfile = function(fid) {
 		xharm$units[nh] = units
 		xharm$longitude[nh] = longitude
 		xharm$latitude[nh] = latitude
+		# Write in the stationID number if it was found
+		xharm$stationIDnumber[nh] = stationIDnumber
 
 		# For each constant (total equal to ncon), pull out the A and kappa 
 		# values
@@ -196,7 +219,7 @@ read_harmonicsfile = function(fid) {
 		xharm$kappa = rbind(xharm$kappa, tempkappa)
 		
 		# Read next line
-		line = noncom(fid)
+		line = noncomST(fid)
 		
 	} # end of while loop
 	
@@ -228,7 +251,17 @@ read_harmonicsfile = function(fid) {
 noncom = function(fid) {
 	# Read next line of file
 	line = readLines(fid, n = 1)
+	# Next check if the line has anyything in it
 	if (length(line) > 0) {
+		# If the line has contents, test whether the first character is a #
+		# and the 3rd character is NOT a !. If this is true (because it only 
+		# has a # but no !, then the line is a normal comment line. We want to
+		# skip over it in that case, by reading in a new line. The while loop
+		# will repeat until it hits a line that starts with # !, at which point
+		# the while test will be false and the while loop will quit, causing 
+		# this function to return the contents of the line with the # !. Note
+		# that it will also test false if the line isn't a comment line, so 
+		# all non-comment lines will be returned to the calling function.
 		while (substr(line,1,1) == '#' & substr(line,3,3) != '!') {
 			# If the first character is a comment character, and the third 
 			# character is NOT an exclamation point, this is just a comment 
@@ -237,9 +270,52 @@ noncom = function(fid) {
 			# If the line is empty (end of file) return -1
 			if (length(line) == 0) {line = '-1'; break}
 		}
-	} else line = '-1'
+	} else line = '-1' # If the line was empty, return -1
 	# Return the current line of text
 	line
 }
+
+############################################################
+# noncomST is a function to skip over comment lines in the harmonics text file.
+# It is designed to find the station_id line and skip over any other comment
+# lines.
+# It needs to be supplied with a file connection (fid) passed from the calling 
+# function. The output is a character vector of the current (non-comment) line's
+# contents.
+noncomST = function(fid) {
+	# Read next line of file
+	line = readLines(fid, n = 1)
+	# Next check if the line has anyything in it
+	if (length(line) > 0) {
+		# If the line has contents, test whether the first character is a #
+		# and the 3rd character is NOT a !. If this is true (because it only 
+		# has a # but no !, then the line is a normal comment line. We want to
+		# skip over it in that case, by reading in a new line. The while loop
+		# will repeat until it hits a line that starts with # !, at which point
+		# the while test will be false and the while loop will quit, causing 
+		# this function to return the contents of the line with the # !. Note
+		# that it will also test false if the line isn't a comment line, so 
+		# all non-comment lines will be returned to the calling function.
+		while (substr(line,1,1) == '#' & substr(line,3,3) != '!') {
+			# If the first character is a comment character, and the third 
+			# character is NOT an exclamation point, this is just a comment 
+			# line. 
+			# Check to see if it happens to be a station_id line:
+			if (substr(line,3,13) == 'station_id:'){
+				# If true, break out of the while loop, so the current 
+				# contents of line will be returned to the calling function at
+				# the end of this function.
+				break
+			}
+			# Otherwise, move to the next line.
+			line = readLines(fid, n = 1)
+			# If the next line is empty (end of file) return -1
+			if (length(line) == 0) {line = '-1'; break}
+		}
+	} else line = '-1' # If the line was empty, return -1
+	# Return the current line of text
+	line
+}
+
 
 
