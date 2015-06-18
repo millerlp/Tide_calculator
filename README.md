@@ -4,7 +4,7 @@ Tide_controller
 Arduino code and associated files for calculating tide height. This assumes that you 
 have downloaded and installed the latest version of the Arduino software (1.6.4 or newer), 
 and have an Arduino with attached real time clock, based on either a DS1307 or DS3231
-I2C-based chip. If you real time clock hasn't previously been set, see the clock section below
+I2C-based chip. If your real time clock hasn't previously been set, see the clock section below
 for info on how to do this. 
 
 ### Download:
@@ -30,8 +30,6 @@ these steps.
 
 ------------------------------
 ### Setting a DS1307 or DS3231 Real Time Clock
-If the real time clock attached to the Arduino is not yet set, you need to set it one time.
-
 If the real time clock attached to the Arduino is not yet set, you need to set it one time 
 before loading the tide prediction software onto the Arduino. Open the Arduino software and 
 go to File>Examples>RTClib>settime_exact.ino. Follow the instructions at the top of that 
