@@ -1,4 +1,4 @@
-Tide_controller
+Tide_calculator
 ===============
 
 Arduino code and associated files for calculating tide height. This assumes that you 
