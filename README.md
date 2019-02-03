@@ -16,11 +16,11 @@ To generate a prediction of the current tide height for a site, install the foll
 
 1. Install a copy of RTClib in your Arduino/libraries/ directory. If there is not already a libraries directory, create it now. RTClib can be downloaded from https://github.com/millerlp/RTClib. If the copy you download and unzip is called "RTClib-master", rename the folder to simply be "RTClib".
 
-2. Copy the folder with the library for your site (i.e. TidelibMontereyHarbor) into Arduino/libraries/. As with the RTClib download, if the folder you unzip has "-master" tacked on to the name, remove "-master" from the folder name when you put it into the Arduino/libraries/ directory.
+2. Copy the folder with the library for your site (i.e. TidelibMontereyMontereyHarborCalifornia) into Arduino/libraries/. As with the RTClib download, if the folder you unzip has "-master" tacked on to the name, remove "-master" from the folder name when you put it into the Arduino/libraries/ directory.
 
-3. Open the Tide_calculator example sketch in the Arduino IDE by going to File>Examples>TidelibMontereyHarbor>Tide_calculator. The code to call the tide prediction library is referenced in the Initial Setup section, near line 44, with a line like:
+3. Open the Tide_calculator_check example sketch in the Arduino IDE by going to File>Examples>TidelibMontereyHarbor>Tide_calculator_check. The code to call the tide prediction library is referenced in the Initial Setup section, near line 55, with a line like:
 
-	\#include "TidelibMontereyHarbor.h"
+	\#include "TidelibMontereyMontereyHarborCalifornia.h"
 
 That line should contain the name of the library for your local site that you copied into Arduino/libraries/.
 
@@ -28,27 +28,29 @@ That line should contain the name of the library for your local site that you co
 Open the serial monitor to view the output. See the http://arduino.cc site for help with 
 these steps. 
 
+5. You can use Tide_calculator_check.ino to ensure that the predicted
+tide levels match your "real" tide tables from a more reliable source. In the Serial
+Monitor, enter a date and time in the format YYYY MM DD HH MM, with the spaces between
+the number values. For example, noon on Jan 1, 2019 would be typed into the Serial Monitor as 2019 1 1 12 00. You must set the Serial Monitor to send a 'newline' character when you hit return (see the dropdown menu in the lower right of the Serial
+Monitor, choose 'newline'). If you are successful, the Arduino should report back the 
+predicted tide height for your date and time, in units of feet above the zero tide line. Keep in mind that this library does not know about daylight savings time, so it assumes your time values are always being entered (and predicted back to you) in local standard time (i.e. the time zone offset for ~November to ~March). If you ask for tide heights during daylight savings time (~March to ~November), the predicted tide height will still be for standard time, and thus it may be one hour off from your tide tables or other software that accounts for the time shift.
+
 ------------------------------
 ### Setting a DS1307 or DS3231 Real Time Clock
 If the real time clock attached to the Arduino is not yet set, you need to set it one time 
 before loading the tide prediction software onto the Arduino. Open the Arduino software and 
-go to File>Examples>RTClib>settime_exact.ino. Follow the instructions at the top of that 
+go to File>Examples>RTClib>settime_Serial.ino. Follow the instructions at the top of that 
 sketch to upload the correct time to your real time clock. Make sure the time you enter 
-is in your local standard time, not Daylight Savings Time (which runs Mar-Nov in most places). 
+is in your local standard time, **NOT** Daylight Savings Time (which runs Mar-Nov in most places). 
 The tide prediction routine relies on the time being set to local standard time for your site, 
-otherwise you won't get the current tide height out. After running the settime_exact.ino sketch, 
-before unplugging the Arduino, immediately upload a different sketch (such as the 
-example Tide_calculator sketch from the tide prediction library you grabbed here) to the Arduino 
-so that the clock doesn't try to reset itself repeatedly when the Arduino restarts.
-
-The settime_exact.ino sketch was contributed by Robert Lozyniak. 
+otherwise you won't get the correct current tide height out, instead you'll get the tide for one hour offset. 
 
 -------------------------------
 ### Generating tide prediction libaries for other sites
 If there is no folder containing a tide prediction library for your desired site, it
 will be necessary to generate a library using the R scripts found in the 
 Generate_new_site_libraries directory. The harmonic data for NOAA sites are all in
-the Harmonics_20141224.Rdata file. With these data, you can generate a new library
+the Harmonics_20181227.Rdata file. With these data, you can generate a new library
 by running the R script tide_harmonics_library_generator.R. Inside that file, you must
 enter a name for the site you're interested in on the line
 stationID = 'Monterey Harbor'
