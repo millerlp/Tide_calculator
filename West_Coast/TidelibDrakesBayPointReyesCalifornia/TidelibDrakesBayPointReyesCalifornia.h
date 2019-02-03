@@ -1,8 +1,8 @@
 /*  TidelibDrakesBayPointReyesCalifornia.h 
   A library for calculating the current tide height at 
    Drakes Bay, Point Reyes, California , NOAA station ID number  9415020 
-  Luke Miller, 2015-06-04 
-  Compiled under Arduino 1.6.4
+  Luke Miller, 2019-02-02 
+  Compiled under Arduino 1.8.8
   https://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.
  The harmonic constituents used here were originally derived from 

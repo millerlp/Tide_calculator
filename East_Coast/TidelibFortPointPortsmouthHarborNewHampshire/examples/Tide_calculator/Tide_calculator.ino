@@ -1,5 +1,5 @@
 /*  Tide_calculator.ino 
- Copyright (c) 2015 Luke Miller
+ Copyright (c) 2019 Luke Miller
 This code calculates the current tide height for the 
 pre-programmed site. It requires a real time clock
 (DS1307 or DS3231 chips) to generate a time for the calculation.
@@ -59,7 +59,7 @@ void setup(void)
   RTC.begin();
 
   // For debugging output to serial monitor
-  Serial.begin(115200); // Set baud rate to 115200 in serial monitor
+  Serial.begin(57600); // Set baud rate to 57600 in serial monitor
   //*************************************
   DateTime now = RTC.now(); // Get current time from clock
   currMinute = now.minute(); // Store current minute value
