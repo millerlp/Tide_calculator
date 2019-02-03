@@ -17,7 +17,7 @@
 # subordinate stations you'll still need to first generate predictions for the 
 # local reference station (contained in this data set) and apply your 
 # corrections afterwards.
-load('Harmonics_20141224.Rdata')
+load('Harmonics_20181227.Rdata')
 
 # Specify a search string that will hopefully only return a single station
 #stationID = 'San Diego, San Diego Bay'
