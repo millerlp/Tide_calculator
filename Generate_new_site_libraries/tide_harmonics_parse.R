@@ -18,7 +18,8 @@
 source('./read_harmonicsfile.R')
 
 # Create a connection to the harmonics text file for reading.
-fid = file('W:/xtide/harmonics-20141224.txt', open = 'r')
+fid = file('W:/xtide/harmonics-20141224.txt', open = 'r',
+           encoding='ASCII')
 
 # Call the read_harmonicsfile function (found in read_harmonicsfile.R) to parse
 # the harmonics file into a usable format.
@@ -66,5 +67,5 @@ harms = harms2
 
 # Save the results to a Rdata file, since there's no need to re-parse the 
 # harmonics file once you've done it once. 
-save(harms, file = 'Harmonics_20141224_2.Rdata')
+save(harms, file = 'Harmonics_20181227.Rdata')
 
