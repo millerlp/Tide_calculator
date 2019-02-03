@@ -18,7 +18,7 @@
 source('./read_harmonicsfile.R')
 
 # Create a connection to the harmonics text file for reading.
-fid = file('W:/xtide/harmonics-20141224.txt', open = 'r',
+fid = file('./harmonics-dwf-20181227-free.txt', open = 'r',
            encoding='ASCII')
 
 # Call the read_harmonicsfile function (found in read_harmonicsfile.R) to parse
