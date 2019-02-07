@@ -1,7 +1,7 @@
 /*  TidelibValdezPrinceWilliamSoundAlaska.h 
   A library for calculating the current tide height at 
    Valdez, Prince William Sound, Alaska , NOAA station ID number  9454240 
-  Luke Miller, 2019-02-02 
+  Luke Miller, 2019-02-07 
   Compiled under Arduino 1.8.8
   https://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.

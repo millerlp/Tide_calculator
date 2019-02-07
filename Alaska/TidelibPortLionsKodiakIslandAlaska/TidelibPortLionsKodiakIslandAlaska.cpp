@@ -2,7 +2,7 @@
  This source file contains a tide calculation function for the site listed
  below. This file and the associated header file should be placed in the
  Ardiuno/libraries/ directory inside a single folder.
- Luke Miller, 2019-02-02 
+ Luke Miller, 2019-02-07 
  http://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.
  Compiled for Arduino v1.8.8 circa 2019
@@ -24,7 +24,7 @@
 
 unsigned int YearIndx = 0; // Used to index rows in the Equilarg/Nodefactor arrays
 float currHours = 0;          // Elapsed hours since start of year
-const int adjustGMT = 8;     // Time zone adjustment to get time in GMT.
+const int adjustGMT = 9;     // Time zone adjustment to get time in GMT.
 //Make sure this is correct for the local standard time of the tide station.
 // 8 = Pacific Standard Time (America/Los_Angeles)
 /* Initialize harmonic constituent arrays. These each hold 37 values for

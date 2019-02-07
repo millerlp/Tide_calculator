@@ -67,21 +67,21 @@ load('Harmonics_20181227.Rdata')
 #		"Friday Harbor, San Juan Island, San Juan Channel, Washington"
 #		)
 		
-# Alaska sites, UTC - 9		
-# GMToffset = 9 # Time zone correction for the site's local standard time zone
-#			  # relative to Greenwich Mean Time.
-#stationIDs = c("Ketchikan, Tongass Narrows, Alaska",
-#		"Sitka, Baronof Island, Sitka Sound, Alaska",
-#		"Juneau, Gastineau Channel, Stephens Pass, Alaska",
-#		"Skagway, Taiya Inlet, Lynn Canal, Alaska",
-#		"Yakutat, Yakutat Bay, Alaska",
-#		"Valdez, Prince William Sound, Alaska",
-#		"Seward, Resurrection Bay, Alaska",
-#		"Seldovia, Cook Inlet, Alaska",
-#		"Port Lions, Kodiak Island, Alaska",
-#		"Sand Point, Popof Island, Alaska",
-#		"Nome, Norton Sound, Alaska"
-#		)		
+#Alaska sites, UTC - 9		
+GMToffset = 9 # Time zone correction for the site's local standard time zone
+			  # relative to Greenwich Mean Time.
+stationIDs = c("Ketchikan, Tongass Narrows, Alaska",
+		"Sitka, Baronof Island, Sitka Sound, Alaska",
+		"Juneau, Gastineau Channel, Stephens Pass, Alaska",
+		"Skagway, Taiya Inlet, Lynn Canal, Alaska",
+		"Yakutat, Yakutat Bay, Alaska",
+		"Valdez, Prince William Sound, Alaska",
+		"Seward, Resurrection Bay, Alaska",
+		"Seldovia, Cook Inlet, Alaska",
+		"Port Lions, Kodiak Island, Alaska",
+		"Sand Point, Popof Island, Alaska",
+		"Nome, Norton Sound, Alaska"
+		)		
 		
 # East coast sites, eastern time zone UTC-5:
 #GMToffset = 5 # Time zone correction for the site's local standard time zone
@@ -186,18 +186,18 @@ load('Harmonics_20181227.Rdata')
 #		)
 
 # Caribbean Islands, UTC - 4
-GMToffset = 4 # Time zone correction for the site's local standard time zone
-			  # relative to Greenwich Mean Time.
-stationIDs = c("Christiansted Harbor, St. Croix, Virgin Islands",
-		"Lime Tree Bay, St. Croix, Virgin Islands",
-		"Lameshur Bay, St. John, Virgin Islands",
-		"Botany Bay, St. Thomas, Virgin Islands",
-		"Charlotte Amalie, St. Thomas, Virgin Islands",
-		"San Juan, La Puntilla, San Juan Bay, Puerto Rico",
-		"Magueyes Island, Caribbean Sea, Puerto Rico",
-		"Esperanza, Vieques Island, Puerto Rico",
-		"Fajardo, Puerto Rico"
-		)
+#GMToffset = 4 # Time zone correction for the site's local standard time zone
+#			  # relative to Greenwich Mean Time.
+#stationIDs = c("Christiansted Harbor, St. Croix, Virgin Islands",
+#		"Lime Tree Bay, St. Croix, Virgin Islands",
+#		"Lameshur Bay, St. John, Virgin Islands",
+#		"Botany Bay, St. Thomas, Virgin Islands",
+#		"Charlotte Amalie, St. Thomas, Virgin Islands",
+#		"San Juan, La Puntilla, San Juan Bay, Puerto Rico",
+#		"Magueyes Island, Caribbean Sea, Puerto Rico",
+#		"Esperanza, Vieques Island, Puerto Rico",
+#		"Fajardo, Puerto Rico"
+#		)
 
 
 # Begin main for loop to cycle through each stationID and generate the

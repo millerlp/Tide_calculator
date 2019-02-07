@@ -30,10 +30,10 @@ load('Harmonics_20181227.Rdata')
 #stationID = 'Charleston, Cooper River Entrance, South Carolina'
 #stationID = "Drakes Bay, Point Reyes, California" # UTC -8
 #stationID = "Newport Beach, Newport Bay Entrance, Corona del Mar, California" # UTC-8
-#stationID = "Sitka, Baronof Island, Sitka Sound, Alaska"  # UTC - 9
+stationID = "Sitka, Baronof Island, Sitka Sound, Alaska"  # UTC - 9
 
 
-GMToffset = 8 # Time zone correction for the site's local standard time zone
+GMToffset = 9 # Time zone correction for the site's local standard time zone
 			  # relative to Greenwich Mean Time. 
 			  # Pacific Standard Time zone = GMT - 8
 			  # You must use the standard time zone correction, NOT daylight
