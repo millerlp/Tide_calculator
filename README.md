@@ -8,7 +8,7 @@ I2C-based chip. If your real time clock hasn't previously been set, see the cloc
 for info on how to do this. 
 
 ### Download:
-If you don't already have a git application installed and don't want to deal with learning git, you can simply download these files using the Download ZIP link on the right side of the webpage. Extract the ZIP archive and grab the directories you need (detailed below in the Installation section). 
+If you don't already have a git application installed and don't want to deal with learning git, you can simply download these files using the green "clone or download" link on the right side of the webpage. Extract the ZIP archive and grab the directories you need (detailed below in the Installation section). 
 
 ### Installation:
 
