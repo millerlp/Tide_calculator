@@ -30,7 +30,7 @@ load('Harmonics_20181227.Rdata')
 #stationID = 'Charleston, Cooper River Entrance, South Carolina'
 #stationID = "Drakes Bay, Point Reyes, California" # UTC -8
 #stationID = "Newport Beach, Newport Bay Entrance, Corona del Mar, California" # UTC-8
-stationID = "Sitka, Baronof Island, Sitka Sound, Alaska"  # UTC - 9
+stationID = "Valdez, Prince William Sound, Alaska"  # UTC - 9
 
 
 GMToffset = 9 # Time zone correction for the site's local standard time zone
@@ -91,7 +91,7 @@ year.ind = curr.year - harms$startyear + 1
 # The maximum number of years to hold is a function of the available program 
 # memory space on the microcontroller (Arduino 328P = 30 kb). Ten years of data
 # will consume roughly 10 kb in a minimal example sketch. 
-keep.years = 10
+keep.years = 20
 
 # Extract the useful bits from the harms list, keeping only data for the 
 # desired tide station.
