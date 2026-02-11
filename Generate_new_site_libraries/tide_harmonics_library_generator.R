@@ -7,7 +7,7 @@
 # Author: Luke Miller  Sep 9, 2012
 ###############################################################################
 
-# Load the previously-generated harmonics file that contains data for all 637
+# Load the previously-generated harmonics file that contains data for all 637 (1293 in 2025)
 # reference sites in North America. These are only for tide reference stations 
 # maintained by NOAA. NOAA generates predictions for a few thousand other 
 # 'subordinate' stations that are not included in this data set. The subordinate
@@ -17,10 +17,10 @@
 # subordinate stations you'll still need to first generate predictions for the 
 # local reference station (contained in this data set) and apply your 
 # corrections afterwards.
-load('Harmonics_20181227.Rdata')
+load('Harmonics_20251228.Rdata')  # Updated using 2025-12-28 harmonics from https://flaterco.com/xtide/
 
 # Specify a search string that will hopefully only return a single station
-#stationID = 'San Diego, San Diego Bay'
+stationID = 'San Diego, San Diego Bay'
 #stationID = 'La Jolla'
 #stationID = 'Monterey Harbor'
 #stationID = 'Pier 41, San Francisco'
@@ -30,10 +30,10 @@ load('Harmonics_20181227.Rdata')
 #stationID = 'Charleston, Cooper River Entrance, South Carolina'
 #stationID = "Drakes Bay, Point Reyes, California" # UTC -8
 #stationID = "Newport Beach, Newport Bay Entrance, Corona del Mar, California" # UTC-8
-stationID = "Sitka, Baronof Island, Sitka Sound, Alaska"  # UTC - 9
+#stationID = "Sitka, Baronof Island, Sitka Sound, Alaska"  # UTC - 9
 
 
-GMToffset = 9 # Time zone correction for the site's local standard time zone
+GMToffset = 8 # Time zone correction for the site's local standard time zone
 			  # relative to Greenwich Mean Time. 
 			  # Pacific Standard Time zone = GMT - 8
 			  # You must use the standard time zone correction, NOT daylight
@@ -91,7 +91,7 @@ year.ind = curr.year - harms$startyear + 1
 # The maximum number of years to hold is a function of the available program 
 # memory space on the microcontroller (Arduino 328P = 30 kb). Ten years of data
 # will consume roughly 10 kb in a minimal example sketch. 
-keep.years = 10
+keep.years = 20
 
 # Extract the useful bits from the harms list, keeping only data for the 
 # desired tide station.

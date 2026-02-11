@@ -1,11 +1,11 @@
 /*  Tide_calculator.ino 
- Copyright (c) 2019 Luke Miller
+ Copyright (c) 2026 Luke Miller
 This code calculates the current tide height for the 
 pre-programmed site. It requires a real time clock
 (DS1307 or DS3231 chips) to generate a time for the calculation.
 The site is set by the name of the included library (see line 44 below)
 
-Written under version 1.6.4 of the Arduino IDE.
+Written under version 1.8.19 of the Arduino IDE.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -10,7 +10,7 @@
 # Author: Luke Miller  Sep 9, 2012
 ###############################################################################
 
-# Load the previously-generated harmonics file that contains data for all 637
+# Load the previously-generated harmonics file that contains data for all 637 (1293 in 2025)
 # reference sites in North America. These are only for tide reference stations 
 # maintained by NOAA. NOAA generates predictions for a few thousand other 
 # 'subordinate' stations that are not included in this data set. The subordinate
@@ -20,8 +20,12 @@
 # subordinate stations you'll still need to first generate predictions for the 
 # local reference station (contained in this data set) and apply your 
 # corrections afterwards.
-load('Harmonics_20181227.Rdata')
+load('Harmonics_20251228.Rdata') # Updated using 2025-12-28 harmonics from https://flaterco.com/xtide/
 
+
+# Below on lines 37-204 you'll find chunks of code that cover the West Coast,
+# East Coast, Alaska etc. Uncomment each in turn and re-run this code to 
+# generate a region-specific set of tide stations. 
 
 # This is the list of station ID names. Each needs to return only one match
 # from the possible stations in the database. All stations need to be in the
@@ -68,20 +72,20 @@ load('Harmonics_20181227.Rdata')
 #		)
 		
 #Alaska sites, UTC - 9		
-GMToffset = 9 # Time zone correction for the site's local standard time zone
-			  # relative to Greenwich Mean Time.
-stationIDs = c("Ketchikan, Tongass Narrows, Alaska",
-		"Sitka, Baronof Island, Sitka Sound, Alaska",
-		"Juneau, Gastineau Channel, Stephens Pass, Alaska",
-		"Skagway, Taiya Inlet, Lynn Canal, Alaska",
-		"Yakutat, Yakutat Bay, Alaska",
-		"Valdez, Prince William Sound, Alaska",
-		"Seward, Resurrection Bay, Alaska",
-		"Seldovia, Cook Inlet, Alaska",
-		"Port Lions, Kodiak Island, Alaska",
-		"Sand Point, Popof Island, Alaska",
-		"Nome, Norton Sound, Alaska"
-		)		
+#GMToffset = 9 # Time zone correction for the site's local standard time zone
+#			  # relative to Greenwich Mean Time.
+#stationIDs = c("Ketchikan, Tongass Narrows, Alaska",
+#		"Sitka, Baronof Island, Sitka Sound, Alaska",
+#		"Juneau, Gastineau Channel, Stephens Pass, Alaska",
+#		"Skagway, Taiya Inlet, Lynn Canal, Alaska",
+#		"Yakutat, Yakutat Bay, Alaska",
+#		"Valdez, Prince William Sound, Alaska",
+#		"Seward, Resurrection Bay, Alaska",
+#		"Seldovia, Cook Inlet, Alaska",
+#		"Port Lions, Kodiak Island, Alaska",
+#		"Sand Point, Popof Island, Alaska",
+#		"Nome, Norton Sound, Alaska"
+#		)		
 		
 # East coast sites, eastern time zone UTC-5:
 #GMToffset = 5 # Time zone correction for the site's local standard time zone
@@ -186,18 +190,18 @@ stationIDs = c("Ketchikan, Tongass Narrows, Alaska",
 #		)
 
 # Caribbean Islands, UTC - 4
-#GMToffset = 4 # Time zone correction for the site's local standard time zone
-#			  # relative to Greenwich Mean Time.
-#stationIDs = c("Christiansted Harbor, St. Croix, Virgin Islands",
-#		"Lime Tree Bay, St. Croix, Virgin Islands",
-#		"Lameshur Bay, St. John, Virgin Islands",
-#		"Botany Bay, St. Thomas, Virgin Islands",
-#		"Charlotte Amalie, St. Thomas, Virgin Islands",
-#		"San Juan, La Puntilla, San Juan Bay, Puerto Rico",
-#		"Magueyes Island, Caribbean Sea, Puerto Rico",
-#		"Esperanza, Vieques Island, Puerto Rico",
-#		"Fajardo, Puerto Rico"
-#		)
+GMToffset = 4 # Time zone correction for the site's local standard time zone
+			  # relative to Greenwich Mean Time.
+stationIDs = c("Christiansted Harbor, St. Croix, Virgin Islands",
+		"Lime Tree Bay, St. Croix, Virgin Islands",
+		"Lameshur Bay, St. John, Virgin Islands",
+		"Botany Bay, St. Thomas, Virgin Islands",
+		"Charlotte Amalie, St. Thomas, Virgin Islands",
+		"San Juan, La Puntilla, San Juan Bay, Puerto Rico",
+		"Magueyes Island, Caribbean Sea, Puerto Rico",
+		"Esperanza, Vieques Island, Puerto Rico",
+		"Fajardo, Puerto Rico"
+		)
 
 
 # Begin main for loop to cycle through each stationID and generate the
@@ -263,7 +267,7 @@ for (stNumber in 1:length(stationIDs)) {
 # The maximum number of years to hold is a function of the available program 
 # memory space on the microcontroller (Arduino 328P = 30 kb). Ten years of data
 # will consume roughly 10 kb in a minimal example sketch. 
-	keep.years = 10
+	keep.years = 15
 	
 # Extract the useful bits from the harms list, keeping only data for the 
 # desired tide station.
@@ -326,7 +330,7 @@ for (stNumber in 1:length(stationIDs)) {
 	cat(strftime(curr.date, format = '%Y-%m-%d'),'\n')
 	cat(' http://github.com/millerlp/Tide_calculator\n')
 	cat(' Released under the GPL version 3 license.\n')
-	cat(' Compiled for Arduino v1.8.8 circa 2019\n\n')
+	cat(' Compiled for Arduino v1.8.19 circa 2026\n\n')
 	cat(' The harmonic constituents used here were originally derived from \n')
 	cat(' the Center for Operational Oceanic Products and Services (CO-OPS),\n')
 	cat(' National Ocean Service (NOS), National Oceanic and Atmospheric \n')
@@ -477,7 +481,7 @@ for (stNumber in 1:length(stationIDs)) {
 	cat('  ', harms1$station, ', NOAA station ID number ', harms1$stationIDnumber,'\n')
 	cat('  Luke Miller, ')
 	cat(strftime(curr.date, format = '%Y-%m-%d'),'\n')
-	cat('  Compiled under Arduino 1.8.8\n')
+	cat('  Compiled under Arduino 1.8.19\n')
 	cat('  https://github.com/millerlp/Tide_calculator\n')
 	cat(' Released under the GPL version 3 license.\n')
 	cat(' The harmonic constituents used here were originally derived from \n')
@@ -530,7 +534,7 @@ for (stNumber in 1:length(stationIDs)) {
 	cat('pre-programmed site. It requires a real time clock\n')
 	cat('(DS1307 or DS3231 chips) to generate a time for the calculation.\n')
 	cat('The site is set by the name of the included library (see line 44 below)\n\n')
-	cat('Written under version 1.6.4 of the Arduino IDE.\n\n')
+	cat('Written under version 1.8.19 of the Arduino IDE.\n\n')
 	cat('This program is free software: you can redistribute it and/or modify\n')
 	cat('it under the terms of the GNU General Public License as published by\n')
 	cat('the Free Software Foundation, either version 3 of the License, or \n')
@@ -665,7 +669,7 @@ for (stNumber in 1:length(stationIDs)) {
 	cat('\n Just open the Serial Monitor and input a date and time using the \n')
 	cat('format: YYYY MM DD HH MM SS and send a newline at the end.\n')
 	cat('The site is set by the name of the included library (see line 44 below)\n\n')
-	cat('Written under version 1.8.8 of the Arduino IDE.\n\n')
+	cat('Written under version 1.8.19 of the Arduino IDE.\n\n')
 	cat('This program is free software: you can redistribute it and/or modify\n')
 	cat('it under the terms of the GNU General Public License as published by\n')
 	cat('the Free Software Foundation, either version 3 of the License, or \n')

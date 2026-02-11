@@ -1,5 +1,5 @@
 /*  Tide_calculator_check.ino 
- Copyright (c) 2019 Luke Miller
+ Copyright (c) 2026 Luke Miller
 This code calculates the tide height for the 
 pre-programmed site based on user input date and time. You should not
 need a functional clock chip to run this example, just use the Serial Monitor.
@@ -8,7 +8,7 @@ need a functional clock chip to run this example, just use the Serial Monitor.
 format: YYYY MM DD HH MM SS and send a newline at the end.
 The site is set by the name of the included library (see line 44 below)
 
-Written under version 1.8.8 of the Arduino IDE.
+Written under version 1.8.19 of the Arduino IDE.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

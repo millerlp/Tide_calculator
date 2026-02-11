@@ -1,8 +1,8 @@
 /*  TidelibBiloxiBiloxiBayMississippi.h 
   A library for calculating the current tide height at 
    Biloxi, Biloxi Bay, Mississippi , NOAA station ID number  8744117 
-  Luke Miller, 2019-02-02 
-  Compiled under Arduino 1.8.8
+  Luke Miller, 2026-02-11 
+  Compiled under Arduino 1.8.19
   https://github.com/millerlp/Tide_calculator
  Released under the GPL version 3 license.
  The harmonic constituents used here were originally derived from 

@@ -17,8 +17,9 @@
 # Load the functions from read_harmonicsfile.R
 source('./read_harmonicsfile.R')
 
+
 # Create a connection to the harmonics text file for reading.
-fid = file('./harmonics-dwf-20181227-free.txt', open = 'r',
+fid = file('./harmonics-20251228.txt', open = 'r',
            encoding='ASCII')
 
 # Call the read_harmonicsfile function (found in read_harmonicsfile.R) to parse
@@ -67,5 +68,5 @@ harms = harms2
 
 # Save the results to a Rdata file, since there's no need to re-parse the 
 # harmonics file once you've done it once. 
-save(harms, file = 'Harmonics_20181227.Rdata')
+save(harms, file = 'Harmonics_20251228.Rdata')
 

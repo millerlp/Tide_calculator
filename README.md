@@ -2,7 +2,7 @@ Tide_calculator
 ===============
 
 Arduino code and associated files for calculating tide height. This assumes that you 
-have downloaded and installed the latest version of the Arduino software (1.6.4 or newer), 
+have downloaded and installed the latest version of the Arduino software (1.6.4 or newer, recently tested on 1.8.19 and 2.1), 
 and have an Arduino with attached real time clock, based on either a DS1307 or DS3231
 I2C-based chip. If your real time clock hasn't previously been set, see the clock section below
 for info on how to do this. 
@@ -16,7 +16,7 @@ To generate a prediction of the current tide height for a site, install the foll
 
 1. Install a copy of RTClib in your Arduino/libraries/ directory. If there is not already a libraries directory, create it now. RTClib can be downloaded from https://github.com/millerlp/RTClib. If the copy you download and unzip is called "RTClib-master", rename the folder to simply be "RTClib".
 
-2. Copy the folder with the library for your site (i.e. TidelibMontereyMontereyHarborCalifornia) into Arduino/libraries/. As with the RTClib download, if the folder you unzip has "-master" tacked on to the name, remove "-master" from the folder name when you put it into the Arduino/libraries/ directory.
+2. Copy the folder with the library for your site (i.e. TidelibMontereyMontereyHarborCalifornia) into Arduino/libraries/. As with the RTClib download, if the folder you unzip has "-master" or "-main" tacked on to the name, remove "-master" (or "-main") from the folder name when you put it into the Arduino/libraries/ directory.
 
 3. Open the Tide_calculator_check example sketch in the Arduino IDE by going to File>Examples>TidelibMontereyHarbor>Tide_calculator_check. The code to call the tide prediction library is referenced in the Initial Setup section, near line 55, with a line like:
 
@@ -33,7 +33,7 @@ tide levels match your "real" tide tables from a more reliable source. In the Se
 Monitor, enter a date and time in the format YYYY MM DD HH MM, with the spaces between
 the number values. For example, noon on Jan 1, 2019 would be typed into the Serial Monitor as 2019 1 1 12 00. You must set the Serial Monitor to send a 'newline' character when you hit return (see the dropdown menu in the lower right of the Serial
 Monitor, choose 'newline'). If you are successful, the Arduino should report back the 
-predicted tide height for your date and time, in units of feet above the zero tide line. Keep in mind that this library does not know about daylight savings time, so it assumes your time values are always being entered (and predicted back to you) in local standard time (i.e. the time zone offset for ~November to ~March). If you ask for tide heights during daylight savings time (~March to ~November), the predicted tide height will still be for standard time, and thus it may be one hour off from your tide tables or other software that accounts for the time shift.
+predicted tide height for your date and time, in units of feet above the zero tide line. Keep in mind that this library does not know about daylight savings time, so it assumes your time values are always being entered (and predicted back to you) in local standard time (i.e. the winter time zone offset for ~November to ~March). If you ask for tide heights during daylight savings time (~March to ~November), the predicted tide height will still be for standard time, and thus it may be one hour off from your tide tables or other software that accounts for the time shift.
 
 ------------------------------
 ### Setting a DS1307 or DS3231 Real Time Clock
@@ -50,7 +50,7 @@ otherwise you won't get the correct current tide height out, instead you'll get 
 If there is no folder containing a tide prediction library for your desired site, it
 will be necessary to generate a library using the R scripts found in the 
 Generate_new_site_libraries directory. The harmonic data for NOAA sites are all in
-the Harmonics_20181227.Rdata file. With these data, you can generate a new library
+the Harmonics_20251228.Rdata file. With these data, you can generate a new library
 by running the R script tide_harmonics_library_generator.R. Inside that file, you must
 enter a name for the site you're interested in on the line
 stationID = 'Monterey Harbor'

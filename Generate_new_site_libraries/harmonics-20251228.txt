@@ -1,6 +1,6 @@
 # Output of restore_tide_db.
 # This file was converted from ../harmonics-dwf-20251228/harmonics-dwf-20251228-free.tcd
-# at 2026-02-11 13:38 PST
+# at 2026-02-11 14:30 PST
 #
 # ** The following boilerplate text is a placeholder only.  Please       **
 # ** replace it with the boilerplate and changelog available separately. **
@@ -111917,7 +111917,7 @@ x 0 0
 x 0 0
 x 0 0
 x 0 0
-# 363 Day LSQHA (2 Jan  30 Dec, 1971).  Zeroed out MM, MF, and MSF
+# 363 Day LSQHA (2 Jan 30 Dec, 1971).  Zeroed out MM, MF, and MSF
 # BEGIN HOT COMMENTS
 # country: USA
 # source: CO-OPS Metadata API
